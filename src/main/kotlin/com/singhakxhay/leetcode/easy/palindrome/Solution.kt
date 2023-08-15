@@ -2,18 +2,17 @@ package com.singhakxhay.leetcode.easy.palindrome
 
 class Solution {
   fun isPalindrome(x: Int): Boolean {
-    // If number is negative then it cannot be palindrome
-    if (x < 0) {
+    if (x < 0 || x != 0 && x % 10 == 0) {
       return false
     }
 
-    // If number is btw 0-9 then is it palindrome
-    if (x < 10) {
-      return true
+    var y = 0
+    var xCopy = x
+    while (y < xCopy) {
+      y = (xCopy % 10) + (y * 10)
+      xCopy /= 10
     }
 
-    // If number is 2-digit or more
-    val numString = x.toString()
-    return numString == numString.reversed()
+    return (y == xCopy) || (y / 10 == xCopy)
   }
 }
